@@ -1,0 +1,20 @@
+type Round @entity {
+  id: ID!
+  pool: Pool!
+  snapshotBlockNumber: BigInt!
+  numberOfRewards: BigInt!
+  total: BigInt!
+  fee: BigInt!
+  rewards: [Reward!] @derivedFrom(field: "round")
+}
+
+type Reward @entity {
+  id: ID!
+  address: Bytes!
+  value: BigInt!
+  round: Round!
+}
+
+enum Pool {
+  uniswap
+}
